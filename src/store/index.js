@@ -19,7 +19,6 @@ export default new Vuex.Store({
     }
   },
   plugins: [
-    createPersistedState(),
-    process.env.NODE_ENV !== 'production' && require('vuex/dist/logger')()
+    createPersistedState()
   ]
 })

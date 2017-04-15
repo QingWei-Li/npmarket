@@ -16,6 +16,7 @@ module.exports = {
     require('postcss-salad')
   ],
   autoprefixer: false,
+  homepage: '/',
   eslint: true,
   sourceMap: false,
   production: {
