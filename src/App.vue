@@ -16,7 +16,7 @@
 </script>
 
 <style src="nprogress/nprogress.css"></style>
-<!-- <style src="@/assets/font/iconfont.css"></style> -->
+<style src="@/assets/font/iconfont.css"></style>
 <style>
   @reset-global pc;
 

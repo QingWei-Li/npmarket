@@ -11,11 +11,11 @@
           <i class="iconfont icon-search"></i>
         </a>
       </router-link>
-      <router-link to="/box" tag="li" class="Sidebar__item">
+      <!-- <router-link to="/box" tag="li" class="Sidebar__item">
         <a to="/box">
           <i class="iconfont icon-box"></i>
         </a>
-      </router-link>
+      </router-link> -->
     </ul>
   </aside>
 </template>
