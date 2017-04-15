@@ -118,7 +118,7 @@
         }
 
         this.pkg = {}
-        CACHED[name] = this.pkg = (await this.$npms(`package/${name}`)).data
+        CACHED[name] = this.pkg = (await this.$npms(`package/${encodeURIComponent(name)}`)).data
         window.__REPO_URL__ = this.pkg.collected.metadata.links.repository
       }
     }
