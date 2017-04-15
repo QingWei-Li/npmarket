@@ -23,7 +23,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "github-markdown-css": "^2.6.0",
-    "marked3": "^0.3.1",
+    "marked3": "^0.3.2",
     "mini-toastr": "^0.6.5",
     "nprogress": "^0.2.0",
     "prismjs": "^1.6.0",
