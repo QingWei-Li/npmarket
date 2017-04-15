@@ -1,12 +1,11 @@
 # npmarket
 
-> 🛒 Search npm more efficiently
+> 🛒 More efficient search for node packages
 
 ➡️ https://npmarket.surge.sh
 
-<!-- 截图 -->
 
-## Features
+![image](https://cloud.githubusercontent.com/assets/7565692/25064699/68349860-2232-11e7-85e9-fbdd88de317c.png)
 
 ## Links
 
@@ -15,7 +14,6 @@ http://iconfont.cn/plus/collections/detail?cid=4135
 
 ## TODO
 - [ ] emoji
-- [ ] cache request
 
 ## License
 MIT

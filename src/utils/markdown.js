@@ -19,6 +19,15 @@ renderer.link = function (href, title, text) {
   return html
 }
 
+const renderIamge = renderer.image
+renderer.image = function (image, title, text) {
+  if (/^\/[^/]/.test(image)) {
+    image = `${window.__REPO_URL__}/raw/master${image}`
+  }
+
+  return renderIamge.apply(renderer, [image, title, text])
+}
+
 export default function (src = '', options) {
   setTimeout(_ => {
     const scripts = document.querySelectorAll('.markdown-body script')
@@ -31,8 +40,10 @@ export default function (src = '', options) {
         newScript.async = 'async'
         newScript.src = script.src
 
-        script.parentNode.insertBefore(newScript, script)
-        script.parentNode.removeChild(script)
+        if (script.parentNode) {
+          script.parentNode.insertBefore(newScript, script)
+          script.parentNode.removeChild(script)
+        }
       }
     }
   }, 0)

@@ -5,7 +5,8 @@ Vue.use(Router)
 
 const routes = [
   { path: '/', component: require('./views/search') },
-  { path: '/about', component: require('./views/about') }
+  { path: '/about', component: require('./views/about') },
+  { path: '/box', component: require('./views/box') }
 ]
 
 export default new Router({

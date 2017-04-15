@@ -3,31 +3,44 @@
     <filter-panel
       class="PageSearch__list"
       @search="[clearList(), loadList($event)]"
-      @loadMore="!loading && !lock && loadList($event, ++page)"
+      @loadMore="!loadingList && !lockList && loadList($event, ++page)"
       @selected="$router.push({ query: { name: $event } })"
       :list="list"
       :total="total">
       <spinner
         class="PageSearch__list__spinner"
-        v-if="loading"
+        v-if="loadingList"
         color="#0084ff"
         size="30px" />
       </filter-panel>
     <section class="PageSearch__main">
       <header class="PageSearch__main__header">
-        <span>{{ $route.query.name }}</span>
-        <span>v{{ $at('pkg.collected.metadata.version') }}</span>
-        <span>{{ $at('pkg.collected.metadata.description') }}</span>
-        <a
-          class="PageSearch__main__link"
-          target="_blank"
-          :href="$at('pkg.collected.metadata.links.repository')">
-          <i class="iconfont icon-github"></i>
-        </a>
+        <div class="PageSearch__main__header__info">
+          <span class="PageSearch__main__title">
+          {{ $route.query.name || $at('pkg.collected.metadata.name') }}
+          </span>
+          <small class="PageSearch__main__version">{{ $at('pkg.collected.metadata.version') }}</small>
+          <p class="PageSearch__main__desc">{{ $at('pkg.collected.metadata.description') }}</p>
+        </div>
+        <div class="PageSearch__main__header__links">
+          <a
+            class="PageSearch__main__github"
+            target="_blank"
+            :href="$at('pkg.collected.metadata.links.repository')">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </div>
       </header>
       <readme-panel
+        v-if="$at('pkg.collected.metadata.readme')"
         class="PageSearch__main__readme"
-        :content="$at('pkg.collected.metadata.readme')"/>
+        :content="$at('pkg.collected.metadata.readme')">
+      </readme-panel>
+      <div class="PageSearch__main__empty" v-else>
+        <h2>npmarket</h2>
+        <p>More efficient search for node packages</p>
+        <p class="author">Created by <a href="//github.com/qingwei-li">QingWei-Li</a></p>
+      </div>
     </section>
   </main>
 </template>
@@ -39,6 +52,7 @@
   import { CancelToken } from 'axios'
 
   const LIMIT = 25
+  const CACHED = {}
 
   export default {
     name: 'PageSearch',
@@ -50,32 +64,23 @@
       total: 0,
       pkg: {},
       page: 0,
-      loading: false,
-      lock: false
+      loadingList: false,
+      lockList: false
     }),
 
     created() {
-      this.$watch('$route.query.name', async name => {
-        if (!name) return
-        this.pkg = {}
-
-        try {
-          this.pkg = (await this.$npms(`package/${name}`)).data
-        } catch (e) {
-          console.log(e)
-        }
-      }, { immediate: true })
+      this.$watch('$route.query.name', this.loadInfo, { immediate: true })
     },
 
     methods: {
       async loadList(q, page = 0) {
         const from = page * LIMIT
 
-        if (this.lock || this.loading) return
+        if (this.lockList || this.loadingList) return
         if (this.total && this.total < from) {
-          this.lock = true
+          this.lockList = true
         }
-        this.loading = true
+        this.loadingList = true
         try {
           this.cancelSearch && this.cancelSearch()
 
@@ -88,17 +93,37 @@
 
           this.total = result.data.total
           this.list = this.list.concat(result.data.results)
-          this.loading = false
+          this.loadingList = false
         } catch (e) {
-          this.loading = false
+          this.loadingList = false
         }
       },
 
       clearList() {
         this.page = 0
         this.list = []
-        this.lock = false
-        this.loading = false
+        this.lockList = false
+        this.loadingList = false
+      },
+
+      async loadInfo(name) {
+        if (!name) {
+          return
+        }
+
+        if (CACHED[name]) {
+          this.pkg = CACHED[name]
+          window.__REPO_URL__ = this.pkg.collected.metadata.links.repository
+          return
+        }
+
+        this.pkg = {}
+        try {
+          CACHED[name] = this.pkg = (await this.$npms(`package/${name}`)).data
+          window.__REPO_URL__ = this.pkg.collected.metadata.links.repository
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
@@ -131,20 +156,46 @@
       flex-direction: column;
       width: 0;
 
-      &__link {
-        text-decoration: none;
+      &__github {
         color: inherit;
 
         &:hover {
+          text-decoration: none;
           opacity: .6;
+        }
+
+        .iconfont {
+          font-size: 20px;
         }
       }
 
       &__header {
         border-bottom: 1px solid rgba(#9CA3A9, .1);
         box-sizing: border-box;
-        padding: 16px;
         position: relative;
+        height: 72px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+
+        &__info {
+          flex: 1;
+        }
+
+        &__links {
+          width: 100px;
+          text-align: right;
+          margin-right: 20px;
+        }
+      }
+
+      &__title {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      &__desc {
+        margin-top: 4px;
       }
 
       &__readme {
@@ -152,6 +203,28 @@
         overflow-x: hidden;
         flex: 1;
         background-color: #fff;
+      }
+
+      &__empty {
+        text-align: center;
+        align-items: center;
+        margin-top: 16vh;
+
+        h2 {
+          font-size: 50px;
+          font-family: 'Avenir', Helvetica, Arial, sans-serif;
+          color: #0084ff;
+          margin-bottom: 20px;
+        }
+
+        p {
+          font-size: 20px;
+          margin-bottom: 20px;
+        }
+
+        .author {
+          font-size: 14px;
+        }
       }
     }
   }

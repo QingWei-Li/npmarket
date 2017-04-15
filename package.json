@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "main": "src/main.js",
-  "description": "🛒 Search npm more efficiently",
+  "description": "🛒 More efficient search for node packages",
   "scripts": {
     "dev": "vbuild --dev",
     "test": "echo 🌚",

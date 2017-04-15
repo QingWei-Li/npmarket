@@ -11,6 +11,7 @@
         class="iconfont FilterPanel__search__icon"></i>
       <input
         autofocus
+        placeholder="Search packages"
         @keyup.enter="$emit('search', keyword), index = -1"
         @focus="focus = true"
         @blur="focus = false"
@@ -68,7 +69,7 @@
         }
       }),
 
-      index: debounce(500, function (val) {
+      index: debounce(200, function (val) {
         const item = this.list[val]
 
         item && this.$emit('selected', item.package.name)
@@ -92,7 +93,7 @@
     &__search {
       display: flex;
       align-items: center;
-      height: 50px;
+      height: 71px;
       border-bottom: 1px solid rgba(#9CA3A9, .1);
       transition: all .3s;
       padding: 0 20px;
@@ -110,7 +111,7 @@
       &__icon {
         color: #9CA3A9;
         height: 100%;
-        line-height: 50px;
+        line-height: 71px;
         transition: all .3s;
       }
 
