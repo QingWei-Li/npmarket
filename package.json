@@ -1,0 +1,33 @@
+{
+  "name": "npmarket",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/main.js",
+  "description": "🛒 Search npm more efficiently",
+  "scripts": {
+    "dev": "vbuild --dev",
+    "test": "echo 🌚",
+    "build": "vbuild && cp dist/index.html dist/200.html"
+  },
+  "homepage": "https://npmarket.surge.sh",
+  "author": "qingwei-li <cinwell.li@gmail.com> (https://github.com/QingWei-Li)",
+  "license": "MIT",
+  "devDependencies": {
+    "offline-plugin": "^4.7.0",
+    "postcss-salad": "^1.0.8",
+    "surge": "^0.19.0",
+    "vbuild": "^6.24.16"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "github-markdown-css": "^2.6.0",
+    "marked3": "^0.3.1",
+    "nprogress": "^0.2.0",
+    "prismjs": "^1.6.0",
+    "throttle-debounce": "^1.0.1",
+    "vue-notifications": "^0.8.0",
+    "vue-router": "^2.4.0",
+    "vueo": "^0.3.2",
+    "vuetrend": "^0.2.2"
+  }
+}
