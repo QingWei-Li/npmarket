@@ -1,4 +1,4 @@
 language: node_js
 node_js: stable
 after_success:
-  - yarn build && surge --project dist --domain npmarket.surge.sh
+  - yarn build && yarn deploy

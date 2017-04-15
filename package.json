@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vbuild --dev",
     "test": "echo 🌚",
-    "build": "vbuild && cp dist/index.html dist/200.html"
+    "build": "vbuild && cp dist/index.html dist/200.html",
+    "deploy": "surge --project dist --domain https://npmarket.surge.sh"
   },
   "homepage": "https://npmarket.surge.sh",
   "author": "qingwei-li <cinwell.li@gmail.com> (https://github.com/QingWei-Li)",
