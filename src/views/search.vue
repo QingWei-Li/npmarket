@@ -118,12 +118,8 @@
         }
 
         this.pkg = {}
-        try {
-          CACHED[name] = this.pkg = (await this.$npms(`package/${name}`)).data
-          window.__REPO_URL__ = this.pkg.collected.metadata.links.repository
-        } catch (e) {
-          console.log(e)
-        }
+        CACHED[name] = this.pkg = (await this.$npms(`package/${name}`)).data
+        window.__REPO_URL__ = this.pkg.collected.metadata.links.repository
       }
     }
   }

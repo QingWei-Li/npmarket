@@ -1,4 +1,7 @@
 import runtime from 'offline-plugin/runtime'
+import miniToastr from 'mini-toastr'
+
+miniToastr.init()
 
 runtime.install({
   onUpdateReady() {
@@ -7,6 +10,6 @@ runtime.install({
   },
 
   onUpdated() {
-    console.log('CodePan has been updated in the background, you can refresh the page to apply updates!')
+    miniToastr.info('npmarket has been updated in the background, you can refresh the page to apply updates!', 'New version')
   }
 })
