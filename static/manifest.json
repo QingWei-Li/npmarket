@@ -1,0 +1,9 @@
+{
+  "name": "npmarket",
+  "short_name": "npmarket",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff",
+  "theme_color": "#272E3D"
+}
