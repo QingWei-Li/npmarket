@@ -5,43 +5,50 @@
         'FilterPanel__search--active': focus
       }"
       class="FilterPanel__search">
-      <i class="iconfont icon-search FilterPanel__search__icon"></i>
+      <i
+        @click="keyword = ''"
+        :class="[focus && keyword ? 'icon-cross' : 'icon-search']"
+        class="iconfont FilterPanel__search__icon"></i>
       <input
         autofocus
-        @keyup.enter="$emit('search', keyword)"
+        @keyup.enter="$emit('search', keyword), index = -1"
         @focus="focus = true"
         @blur="focus = false"
+        @keydown.prevent.down="index++"
+        @keydown.prevent.up="index && index--"
         class="FilterPanel__search__input"
         type="search"
         v-model="keyword">
     </div>
-    <ul class="FilterPanel__list">
+    <ul
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="10"
+      class="FilterPanel__list">
       <li
-        @click="$emit('selected', item.package.name)"
+        @click="index = key"
         class="FilterPanel__list__item"
-        v-for="item in list">
-        <h2>
-          <span>{{ item.package.name }}</span>
-          <small>{{ item.package.version }}</small>
-        </h2>
-        <p>{{ item.package.description }}</p>
-
-        <p>
-          <span>{{ item.package.publisher.username }}</span>
-          <span>{{ item.score.final }}</span>
-        </p>
+        :class="{
+          'FilterPanel__list__item--active': index === key
+        }"
+        v-for="(item, key) in list">
+        <pkg :data="item" />
       </li>
+      <slot></slot>
     </ul>
   </div>
 </template>
 
 <script>
   import debounce from 'throttle-debounce/debounce'
+  import Pkg from './pkg'
 
   export default {
     name: 'FilterPanel',
 
     props: ['list', 'total'],
+
+    components: { Pkg },
 
     created() {
       this.keyword = this.$route.query.name
@@ -49,13 +56,29 @@
 
     data: () => ({
       keyword: '',
-      focus: false
+      index: -1,
+      focus: false,
+      scrollTo: 0
     }),
 
     watch: {
       keyword: debounce(200, function (val) {
-        val && this.$emit('search', val)
+        if (val) {
+          this.$emit('search', val)
+        }
+      }),
+
+      index: debounce(500, function (val) {
+        const item = this.list[val]
+
+        item && this.$emit('selected', item.package.name)
       })
+    },
+
+    methods: {
+      loadMore() {
+        this.list.length && this.$emit('loadMore', this.keyword)
+      }
     }
   }
 </script>
@@ -70,20 +93,22 @@
       display: flex;
       align-items: center;
       height: 50px;
-      border-bottom: 1px solid #3d526c;
+      border-bottom: 1px solid rgba(#9CA3A9, .1);
       transition: all .3s;
-      margin: 0 20px;
+      padding: 0 20px;
 
       &--active {
-        border-bottom-color: #233142;
-
         .FilterPanel__search__icon {
-          color: #233142;
+          color: #272E3D;
+        }
+
+        .FilterPanel__search__input {
+          color: #272E3D;
         }
       }
 
       &__icon {
-        color: #3d526c;
+        color: #9CA3A9;
         height: 100%;
         line-height: 50px;
         transition: all .3s;
@@ -98,22 +123,27 @@
         border-radius: 0;
         flex: 1;
         height: 100%;
-        background-color: transparent;
-        color: #fff;
+        color: #9CA3A9;
+        transition: all .3s;
       }
     }
 
     &__list {
       flex: 1;
       overflow-y: auto;
+      padding-bottom: 60px;
 
       &__item {
         padding: 20px;
-        color: #e3e3e3;
-        /*border-bottom: 1px dashed #384c64;*/
+        color: #272E3D;
+        position: relative;
 
-        &:hover {
-          background-color: #384c64;
+        &:hover:not(&--active) {
+          background-color: rgba(#DDE2E9, .2);
+        }
+
+        &--active {
+          background-color: rgba(#DDE2E9, .8);
         }
       }
     }

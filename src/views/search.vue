@@ -2,10 +2,17 @@
   <main class="PageSearch">
     <filter-panel
       class="PageSearch__list"
-      @search="loadList"
+      @search="[clearList(), loadList($event)]"
+      @loadMore="!loading && !lock && loadList($event, ++page)"
       @selected="$router.push({ query: { name: $event } })"
       :list="list"
-      :total="total" />
+      :total="total">
+      <spinner
+        class="PageSearch__list__spinner"
+        v-if="loading"
+        color="#0084ff"
+        size="30px" />
+      </filter-panel>
     <section class="PageSearch__main">
       <header class="PageSearch__main__header">
         <span>{{ $route.query.name }}</span>
@@ -28,17 +35,23 @@
 <script>
   import FilterPanel from '@/components/filter-panel'
   import ReadmePanel from '@/components/readme-panel'
+  import Spinner from 'vue-spinner/src/BounceLoader'
   import { CancelToken } from 'axios'
+
+  const LIMIT = 25
 
   export default {
     name: 'PageSearch',
 
-    components: { FilterPanel, ReadmePanel },
+    components: { FilterPanel, ReadmePanel, Spinner },
 
     data: () => ({
       list: [],
       total: 0,
-      pkg: {}
+      pkg: {},
+      page: 0,
+      loading: false,
+      lock: false
     }),
 
     created() {
@@ -55,7 +68,14 @@
     },
 
     methods: {
-      async loadList(q) {
+      async loadList(q, page = 0) {
+        const from = page * LIMIT
+
+        if (this.lock || this.loading) return
+        if (this.total && this.total < from) {
+          this.lock = true
+        }
+        this.loading = true
         try {
           this.cancelSearch && this.cancelSearch()
 
@@ -63,15 +83,22 @@
             cancelToken: new CancelToken(c => {
               this.cancelSearch = c
             }),
-            params: { q }
+            params: { q, from }
           })
 
           this.total = result.data.total
-          this.list = result.data.results
+          this.list = this.list.concat(result.data.results)
+          this.loading = false
         } catch (e) {
-          this.total = 0
-          this.list = []
+          this.loading = false
         }
+      },
+
+      clearList() {
+        this.page = 0
+        this.list = []
+        this.lock = false
+        this.loading = false
       }
     }
   }
@@ -82,10 +109,20 @@
     display: flex;
 
     &__list {
-      background-color: #455D7A;
+      background-color: #fff;
       flex: 25%;
       box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
       z-index: 1;
+      position: relative;
+      overflow-y: hidden;
+
+      &__spinner {
+        position: absolute;
+        bottom: 0;
+        margin: 10px auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
 
     &__main {
@@ -104,9 +141,9 @@
       }
 
       &__header {
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid rgba(#9CA3A9, .1);
         box-sizing: border-box;
-        padding: 14px;
+        padding: 16px;
         position: relative;
       }
 
@@ -114,7 +151,7 @@
         overflow-y: auto;
         overflow-x: hidden;
         flex: 1;
-        background-color: #fafafa;
+        background-color: #fff;
       }
     }
   }

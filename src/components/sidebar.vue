@@ -28,7 +28,7 @@
 
 <style>
   .Sidebar {
-    background-color: #233142;
+    background-color: #272E3D;
 
     .iconfont {
       color: #fff;

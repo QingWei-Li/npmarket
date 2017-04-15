@@ -8,9 +8,14 @@
 
 ## Features
 
-## Colors
+## Links
 
 http://colorhunt.co/c/66816
+http://iconfont.cn/plus/collections/detail?cid=4135
+
+## TODO
+- [ ] emoji
+- [ ] cache request
 
 ## License
 MIT

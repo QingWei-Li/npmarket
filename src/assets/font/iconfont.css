@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1492243399453'); /* IE9*/
-  src: url('iconfont.eot?t=1492243399453#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1492243399453') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1492243399453') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1492243399453#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1492255348688'); /* IE9*/
+  src: url('iconfont.eot?t=1492255348688#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1492255348688') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1492255348688') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1492255348688#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -21,9 +21,11 @@
 
 .icon-github:before { content: "\e735"; }
 
-.icon-bar-graph-:before { content: "\e601"; }
+.icon-bar-graph:before { content: "\e601"; }
 
 .icon-box:before { content: "\e602"; }
+
+.icon-cross:before { content: "\e607"; }
 
 .icon-download:before { content: "\e603"; }
 

@@ -16,7 +16,7 @@
 </script>
 
 <style src="nprogress/nprogress.css"></style>
-<style src="@/assets/font/iconfont.css"></style>
+<!-- <style src="@/assets/font/iconfont.css"></style> -->
 <style>
   @reset-global pc;
 
@@ -26,7 +26,17 @@
 
   body {
     font-size: 14px;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    color: #272E3D;
+  }
+
+  a {
+    text-decoration: none;
+    color: #0084ff;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .App {
