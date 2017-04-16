@@ -40,7 +40,13 @@
 
     computed: {
       list() {
-        return this.$store.state.collects
+        const collects = this.$store.state.collects
+        const text = this.keyword
+
+        if (this.keyword) {
+          return collects.filter(pkg => pkg.package.name.indexOf(text) > -1)
+        }
+        return collects
       },
 
       total() {

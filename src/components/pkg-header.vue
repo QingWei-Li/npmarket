@@ -55,7 +55,7 @@
       }
 
       &__links {
-        width: 100px;
+        width: 300px;
         text-align: right;
         margin-right: 20px;
       }

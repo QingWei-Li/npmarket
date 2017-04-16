@@ -2,7 +2,7 @@
   <main class="PageSearch">
     <filter-panel
       class="PageSearch__list"
-      @search="[clearList(), updateQuery($event)]"
+      @search="[$event && clearList(), updateQuery($event)]"
       @loadMore="!loadingList && !lockList && updateQuery($event, ++page)"
       @selected="$router.push({ query: { name: $event } })"
       :list="list"
@@ -49,14 +49,14 @@
 
     created() {
       this.$watch('$route.query.name', this.loadInfo, { immediate: true })
-      this.$watch('$route.query.q', this.loadList, { immediate: true })
+      this.$watch('$route.query', this.loadList, { immediate: true })
     },
 
     methods: {
       updateQuery(q, page = 0) {
         const from = page * LIMIT
 
-        if (this.lockList || this.loadingList) return
+        if (this.lockList || this.loadingList || !q) return
         if (this.total && this.total < from) {
           this.lockList = true
         }

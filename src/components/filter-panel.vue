@@ -64,9 +64,7 @@
 
     watch: {
       keyword: debounce(200, function (val) {
-        if (val) {
-          this.$emit('search', val)
-        }
+        this.$emit('search', val)
       }),
 
       index: debounce(200, function (val) {
