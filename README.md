@@ -13,7 +13,6 @@
 
 ## TODO
 - [ ] Emoji
-- [ ] PWA
 - [ ] Favorites page
 - [ ] Electron app
 

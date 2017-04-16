@@ -34,7 +34,7 @@
       <i
         v-show="hover || isStar"
         :class="[isStar ? 'icon-star' : 'icon-unstar']"
-        @click.stop="starPkg"
+        @click.stop="$store.commit(isStar ? 'REMOVE_FROM_BOX' : 'ADD_TO_BOX', data)"
         class="iconfont"></i>
     </div>
   </div>
@@ -60,31 +60,12 @@
       },
 
       isStar() {
-        return Boolean(this.$store.state.collects.find(pkg => pkg.name === this.data.package.name))
+        return Boolean(this.$store.state.collects.find(pkg => pkg.package.name === this.data.package.name))
       }
     },
 
     created() {
       this.colors = colors
-    },
-
-    methods: {
-      starPkg() {
-        const { name, version, description, date, publisher } = this.data.package
-
-        if (this.isStar) {
-          this.$store.commit('REMOVE_FROM_BOX', name)
-        } else {
-          this.$store.commit('ADD_TO_BOX', {
-            name,
-            version,
-            description,
-            date,
-            publisher,
-            score: this.store
-          })
-        }
-      }
     }
   }
 </script>
@@ -133,10 +114,6 @@
       }
     }
 
-    &__container {
-      flex: 100%;
-    }
-
     h2 {
       font-weight: bold;
       font-size: 16px;
@@ -149,6 +126,7 @@
     }
 
     blockquote {
+      word-wrap: break-word;
       font-size: 14px;
       margin-bottom: 6px;
     }

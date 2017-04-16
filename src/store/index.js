@@ -14,8 +14,8 @@ export default new Vuex.Store({
       state.collects.push(data)
     },
 
-    REMOVE_FROM_BOX(state, name) {
-      const pkg = state.collects.find(pkg => pkg.name === name)
+    REMOVE_FROM_BOX(state, data) {
+      const pkg = state.collects.find(pkg => pkg.package.name === data.package.name)
       drop(state.collects, pkg)
     }
   },
