@@ -43,11 +43,15 @@
     display: flex;
 
     &__sidebar {
-      flex: 5%;
+      width: 71px;
     }
 
     &__view {
-      flex: 95%;
+      flex: 1;
     }
+  }
+
+  .mini-toastr-notification__message {
+    padding: 0;
   }
 </style>

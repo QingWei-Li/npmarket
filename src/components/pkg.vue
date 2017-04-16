@@ -34,7 +34,7 @@
       <i
         v-show="hover || isStar"
         :class="[isStar ? 'icon-star' : 'icon-unstar']"
-        @click.stop="$store.commit(isStar ? 'REMOVE_FROM_CCOLLECT' : 'ADD_TO_COLLECT', data.package.name)"
+        @click.stop="starPkg"
         class="iconfont"></i>
     </div>
   </div>
@@ -60,12 +60,31 @@
       },
 
       isStar() {
-        return this.$store.state.collects.indexOf(this.data.package.name) > -1
+        return Boolean(this.$store.state.collects.find(pkg => pkg.name === this.data.package.name))
       }
     },
 
     created() {
       this.colors = colors
+    },
+
+    methods: {
+      starPkg() {
+        const { name, version, description, date, publisher } = this.data.package
+
+        if (this.isStar) {
+          this.$store.commit('REMOVE_FROM_BOX', name)
+        } else {
+          this.$store.commit('ADD_TO_BOX', {
+            name,
+            version,
+            description,
+            date,
+            publisher,
+            score: this.store
+          })
+        }
+      }
     }
   }
 </script>
@@ -74,6 +93,7 @@
   .Pkg {
     display: flex;
     align-items: center;
+    padding: 20px;
 
     &__toolbar {
       position: absolute;

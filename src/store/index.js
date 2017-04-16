@@ -10,15 +10,18 @@ export default new Vuex.Store({
     collects: []
   },
   mutations: {
-    ADD_TO_COLLECT(state, name) {
-      state.collects.push(name)
+    ADD_TO_BOX(state, data) {
+      state.collects.push(data)
     },
 
-    REMOVE_FROM_CCOLLECT(state, name) {
-      drop(state.collects, name)
+    REMOVE_FROM_BOX(state, name) {
+      const pkg = state.collects.find(pkg => pkg.name === name)
+      drop(state.collects, pkg)
     }
   },
   plugins: [
-    createPersistedState()
+    createPersistedState({
+      key: 'npmarket'
+    })
   ]
 })

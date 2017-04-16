@@ -27,7 +27,7 @@
       infinite-scroll-distance="10"
       class="FilterPanel__list">
       <li
-        @click="index = key"
+        @click="[$emit('selected', item.package.name), index = key]"
         class="FilterPanel__list__item"
         :class="{
           'FilterPanel__list__item--active': index === key
@@ -135,7 +135,6 @@
       padding-bottom: 60px;
 
       &__item {
-        padding: 20px;
         color: #272E3D;
         position: relative;
 
