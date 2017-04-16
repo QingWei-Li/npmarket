@@ -1,7 +1,9 @@
 <template>
   <main class="App">
     <app-sidebar class="App__sidebar" />
-    <router-view class="App__view" />
+    <keep-alive>
+      <router-view class="App__view" />
+    </keep-alive>
   </main>
 </template>
 
@@ -43,11 +45,15 @@
     display: flex;
 
     &__sidebar {
-      flex: 5%;
+      width: 71px;
     }
 
     &__view {
-      flex: 95%;
+      flex: 1;
     }
+  }
+
+  .mini-toastr-notification__message {
+    padding: 0;
   }
 </style>

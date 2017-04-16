@@ -34,7 +34,7 @@
       <i
         v-show="hover || isStar"
         :class="[isStar ? 'icon-star' : 'icon-unstar']"
-        @click.stop="$store.commit(isStar ? 'REMOVE_FROM_CCOLLECT' : 'ADD_TO_COLLECT', data.package.name)"
+        @click.stop="$store.commit(isStar ? 'REMOVE_FROM_BOX' : 'ADD_TO_BOX', data)"
         class="iconfont"></i>
     </div>
   </div>
@@ -60,7 +60,7 @@
       },
 
       isStar() {
-        return this.$store.state.collects.indexOf(this.data.package.name) > -1
+        return Boolean(this.$store.state.collects.find(pkg => pkg.package.name === this.data.package.name))
       }
     },
 
@@ -74,6 +74,7 @@
   .Pkg {
     display: flex;
     align-items: center;
+    padding: 20px;
 
     &__toolbar {
       position: absolute;
@@ -113,10 +114,6 @@
       }
     }
 
-    &__container {
-      flex: 100%;
-    }
-
     h2 {
       font-weight: bold;
       font-size: 16px;
@@ -129,6 +126,7 @@
     }
 
     blockquote {
+      word-wrap: break-word;
       font-size: 14px;
       margin-bottom: 6px;
     }

@@ -6,16 +6,16 @@
           <i class="iconfont icon-github"></i>
         </a>
       </li>
-      <router-link to="/" tag="li" class="Sidebar__item">
-        <a to="/">
+      <router-link exact to="/" tag="li" class="Sidebar__item">
+        <a href="/">
           <i class="iconfont icon-search"></i>
         </a>
       </router-link>
-      <!-- <router-link to="/box" tag="li" class="Sidebar__item">
-        <a to="/box">
+      <router-link exact to="/box" tag="li" class="Sidebar__item">
+        <a href="/box">
           <i class="iconfont icon-box"></i>
         </a>
-      </router-link> -->
+      </router-link>
     </ul>
   </aside>
 </template>
@@ -48,7 +48,7 @@
         }
       }
 
-      &:hover:not(&--highlight) {
+      &:hover:not(&--highlight),&.active {
         background-color: #1c212c;
       }
     }
