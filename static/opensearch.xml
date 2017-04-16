@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>npmarket</ShortName>
+  <Description>npmarket - more efficient search for node packages</Description>
+  <Tags>npm search node module package github</Tags>
+  <Contact>cinwell.li@gmail.com</Contact>
+  <Developer>Qingwei-Li</Developer>
+  <Url type="text/html" method="get" template="https://npmarket.surge.sh/?q={searchTerms}"/>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image height="16" width="16" type="image/vnd.microsoft.icon"></Image>
+</OpenSearchDescription>
