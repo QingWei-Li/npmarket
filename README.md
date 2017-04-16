@@ -13,7 +13,7 @@
 
 ## TODO
 - [ ] Emoji
-- [ ] Favorites page
+- [x] Favorites page
 - [ ] Electron app
 
 ## License
