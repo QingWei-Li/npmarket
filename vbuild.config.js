@@ -1,29 +1,25 @@
-var OfflinePlugin = require('offline-plugin')
-var offline = new OfflinePlugin({
-  caches: {
-    main: [':rest:']
-  },
-  ServiceWorker: {
-    events: true
-  },
-  AppCache: {
-    events: true
-  }
-})
+const OfflinePlugin = require('offline-plugin')
 
 module.exports = {
   postcss: [
     require('postcss-salad')
   ],
   autoprefixer: false,
-  homepage: '/',
-  eslint: true,
-  sourceMap: false,
-  production: {
-    webpack(cfg) {
-      cfg.plugins.push(offline)
-
-      return cfg
+  extendWebpack(config) {
+    if (options.mode === 'production') {
+      config
+        .plugin('offline')
+        .use(OfflinePlugin, [{
+          caches: {
+            main: [':rest:']
+          },
+          ServiceWorker: {
+            events: true
+          },
+          AppCache: {
+            events: true
+          }
+        }])
     }
   }
 }

@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "description": "🛒 More efficient search for node packages",
   "scripts": {
-    "dev": "vbuild --dev",
+    "dev": "vbuild dev",
     "test": "echo 🌚",
     "build": "vbuild && cp dist/index.html dist/200.html",
     "deploy": "surge --project dist --domain https://npmarket.surge.sh"
@@ -18,7 +18,7 @@
     "offline-plugin": "^4.7.0",
     "postcss-salad": "^1.0.8",
     "surge": "^0.19.0",
-    "vbuild": "^6.24.16"
+    "vbuild": "^7.0.3"
   },
   "dependencies": {
     "axios": "^0.16.1",
