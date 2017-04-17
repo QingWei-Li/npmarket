@@ -1,6 +1,6 @@
 const OfflinePlugin = require('offline-plugin')
 
-module.exports = {
+module.exports = options => ({
   postcss: [
     require('postcss-salad')
   ],
@@ -22,4 +22,4 @@ module.exports = {
         }])
     }
   }
-}
+})
