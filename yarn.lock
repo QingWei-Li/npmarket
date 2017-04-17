@@ -4962,9 +4962,9 @@ vary@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.1.tgz#67535ebb694c1d52257457984665323f587e8d37"
 
-vbuild@^7.0.3:
-  version "7.0.3"
-  resolved "https://registry.npmjs.org/vbuild/-/vbuild-7.0.3.tgz#142d9b395acd5b5e84458a719452ad3f2417e59b"
+vbuild@^7.0.4:
+  version "7.0.4"
+  resolved "https://registry.npmjs.org/vbuild/-/vbuild-7.0.4.tgz#0214430dd3df2de388447062b63ceccec4e8fa46"
   dependencies:
     "@ream/babel-loader" "^7.0.0"
     autoprefixer "^6.7.7"
