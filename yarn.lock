@@ -5094,10 +5094,6 @@ vueo@^0.3.2:
     get-value "^2.0.6"
     has-value "^0.3.1"
 
-vuetrend@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/vuetrend/-/vuetrend-0.2.2.tgz#e9c82422b3929215b8dbdecd64a3cf0e87673eed"
-
 vuex-persistedstate@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/vuex-persistedstate/-/vuex-persistedstate-1.3.0.tgz#d9b04607b9f3164b2dbf30464d1f502f97af21c5"
