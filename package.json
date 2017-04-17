@@ -18,7 +18,7 @@
     "offline-plugin": "^4.7.0",
     "postcss-salad": "^1.0.8",
     "surge": "^0.19.0",
-    "vbuild": "^7.0.4"
+    "vbuild": "^7.0.6"
   },
   "dependencies": {
     "axios": "^0.16.1",
