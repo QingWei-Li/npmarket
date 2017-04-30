@@ -5,9 +5,9 @@
   "main": "src/main.js",
   "description": "🛒 More efficient search for node packages",
   "scripts": {
-    "dev": "vbuild dev",
+    "dev": "poi",
     "test": "echo 🌚",
-    "build": "vbuild && cp dist/index.html dist/200.html",
+    "build": "poi build && cp dist/index.html dist/200.html",
     "deploy": "surge --project dist --domain https://npmarket.surge.sh"
   },
   "repository": "qingwei-li/npmarket",
@@ -16,9 +16,9 @@
   "license": "MIT",
   "devDependencies": {
     "offline-plugin": "^4.7.0",
+    "poi": "^8.0.0-rc.2",
     "postcss-salad": "^1.0.8",
-    "surge": "^0.19.0",
-    "vbuild": "^7.0.6"
+    "surge": "^0.19.0"
   },
   "dependencies": {
     "axios": "^0.16.1",
