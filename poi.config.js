@@ -1,10 +1,10 @@
 const OfflinePlugin = require('offline-plugin')
 
 module.exports = options => ({
+  autoprefixer: false,
   postcss: [
     require('postcss-salad')
   ],
-  autoprefixer: false,
   extendWebpack(config) {
     if (options.mode === 'production') {
       config
