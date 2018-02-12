@@ -10,7 +10,6 @@
     <div class="PkgHeader__header__links">
       <a
         class="PkgHeader__github"
-        target="_blank"
         :href="$at('data.links.repository')">
         <i class="iconfont icon-github"></i>
       </a>

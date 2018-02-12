@@ -6,7 +6,7 @@ import 'prismjs/components/prism-json.js'
 const renderer = new marked.Renderer()
 
 renderer.link = function (href, title, text) {
-  let html = `<a href="${href}" target="_blank"${title ? ` title=${title}` : ''}>${text}</a>`
+  let html = `<a href="${href}" ${title ? ` title=${title}` : ''}>${text}</a>`
 
   href = href.replace(/\/$/, '')
 
