@@ -1,3 +1,7 @@
+<h1 align=center>
+<img src="logo/512px horizontal.png" width=50%>
+</h1>
+
 # npmarket
 
 [![Build Status](https://img.shields.io/travis/QingWei-Li/npmarket.svg?style=flat-square)](https://travis-ci.org/QingWei-Li/npmarket)
