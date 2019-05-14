@@ -5,27 +5,16 @@ import "prismjs/components/prism-json.js";
 
 const renderer = new marked.Renderer();
 
+const renderLink = renderer.link;
+
 renderer.link = function(href, title, text) {
-  let html = `<a href="${href}" ${title ? ` title=${title}` : ""}>${text}</a>`;
-
-  href = href.replace(/\/$/, "");
-
   if (/jsfiddle\.net\/.*/.test(href)) {
-    html += `<script src="${href.replace(/\/$/, "")}/embed/"></script>`;
+    return `<script src="${href.replace(/\/$/, "")}/embed/"></script>`;
   } else if (/codepen\.io\/.*\/pen\//.test(href)) {
-    html += `<iframe src="${href.replace(/\/pen\//, "/embed/")}"></iframe>`;
+    return `<iframe src="${href.replace(/\/pen\//, "/embed/")}"></iframe>`;
   }
 
-  return html;
-};
-
-const renderIamge = renderer.image;
-renderer.image = function(image, title, text) {
-  if (/^\/[^/]/.test(image)) {
-    image = `${window.__REPO_URL__}/raw/master${image}`;
-  }
-
-  return renderIamge.apply(renderer, [image, title, text]);
+  return renderLink.apply(renderer, arguments);
 };
 
 export default function(src = "", options) {
