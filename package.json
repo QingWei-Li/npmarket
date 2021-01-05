@@ -19,7 +19,7 @@
     "postcss-salad": "^1.0.8"
   },
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "^0.21.1",
     "github-markdown-css": "^2.6.0",
     "marked": "^0.6.2",
     "mini-toastr": "^0.6.5",
