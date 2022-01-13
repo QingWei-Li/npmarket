@@ -1622,19 +1622,12 @@ debug@2.6.1:
   dependencies:
     ms "0.7.2"
 
-debug@2.6.4:
+debug@2.6.4, debug@^2.1.1, debug@^2.2.0:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.4.tgz#7586a9b3c39741c0282ae33445c4e8ac74734fe0"
   integrity sha1-dYaps8OXQcAoKuM0RcTorHRzT+A=
   dependencies:
     ms "0.7.3"
-
-debug@^2.1.1, debug@^2.2.0, debug@^2.4.5:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
-  integrity sha1-D364wwll7AjHKsz6ATDIt5mEFB0=
-  dependencies:
-    ms "0.7.2"
 
 debug@~0.7.4:
   version "0.7.4"
@@ -2091,11 +2084,9 @@ flatten@^1.0.2:
   integrity sha1-2uRqnXj74lKSJYzB54CkHZXAN4I=
 
 follow-redirects@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.2.3.tgz#01abaeca85e3609837d9fcda3167a7e42fdaca21"
-  integrity sha1-AauuyoXjYJg32fzaMWen5C/ayiE=
-  dependencies:
-    debug "^2.4.5"
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
+  integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
 
 for-in@^1.0.1:
   version "1.0.2"
